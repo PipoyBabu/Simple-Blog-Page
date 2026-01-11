@@ -3,45 +3,1544 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="CodeJourney - A Sophomore's Programming Adventure. Documentation of learning C++, Java, and Web Development.">
+    <meta name="theme-color" content="#50b3a2">
+    <title>CodeJourney - A Programming Adventure</title>
+    <link rel="stylesheet" href="src/style.css">
 </head>
-<body>
-    <header>
-  <nav aria-label="Top Navigation">
-    <ul>
-      <li><a href="/about">About</a></li>
-      <li><a href="/contact">Contact</a></li>
-      <li><a href="/rss">RSS</a></li>
-    </ul>
-    <ul>
-      <li><a href="https://twitter.com">Twitter</a></li>
-      <li><a href="https://github.com">GitHub</a></li>
-      <li><a href="https://linkedin.com">LinkedIn</a></li>
-    </ul>
-  </nav>
+<body class="bg-dark-50 overflow-x-hidden">
+    <a href="#main-content" class="skip-link sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:bg-white focus:text-primary-200 focus:px-4 focus:py-2 focus:rounded">Skip to content</a>
+    <!-- Top Navigation -->
+    <nav class="top-nav w-full bg-dark-400 border-b border-dark-500 py-3" aria-label="Secondary Navigation">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row md:justify-between md:items-center gap-3">
+            <ul class="flex gap-6 justify-center md:justify-start text-sm text-dark-100 flex-wrap">
+                <li><a href="#about" class="hover:text-primary-200 transition-colors" aria-label="About">About</a></li>
+                <li><a href="#contact" class="hover:text-primary-200 transition-colors" aria-label="Contact">Contact</a></li>
+            </ul>
+            <ul class="flex gap-6 justify-center md:justify-end text-sm text-dark-100">
+                <li><a href="https://x.com/kuraku_clark" target="_blank" rel="noopener noreferrer" class="hover:text-primary-200 transition-colors" aria-label="Follow on Twitter">Twitter</a></li>
+                <li><a href="https://github.com/PipoyBabu" target="_blank" rel="noopener noreferrer" class="hover:text-primary-200 transition-colors" aria-label="Follow on GitHub">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/clark-wayne-bagtas-a85b7a380/" target="_blank" rel="noopener noreferrer" class="hover:text-primary-200 transition-colors" aria-label="Follow on LinkedIn">LinkedIn</a></li>
+            </ul>
+        </div>
+    </nav>
 
-  <div>
-    <hgroup>
-      <h1>CodeJourney</h1>
-      <p>A Sophomore's Programming Adventure</p>
-    </hgroup>
+    <!-- Header with Branding and Search -->
+    <header class="w-full bg-gradient-to-r from-primary-200 to-primary-300 text-white py-8 md:py-10 border-b-4 border-primary-400">
+        <div class="w-full max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-6">
+                <!-- Branding Section -->
+                <div class="text-center md:text-left md:flex-1">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-2">CodeJourney</h1>
+                    <p class="text-lg md:text-xl text-white/90">Clark Wayne D. Bagtas - FEU Institute of Technology</p>
+                </div>
+                <!-- Search Form -->
+                <form class="w-full md:w-auto md:min-w-64 relative" role="search">
+                    <label for="search-posts" class="sr-only">Search articles</label>
+                    <input 
+                        type="search" 
+                        id="search-posts" 
+                        class="w-full px-4 py-3 rounded-lg bg-white/95 text-dark-400 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-400 transition-all" 
+                        placeholder="Search articles..."
+                        aria-label="Search articles"
+                        autocomplete="off">
+                    <!-- Search Results Dropdown -->
+                    <div id="search-results" class="hidden absolute top-full mt-2 w-full bg-white rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto">
+                        <ul id="search-results-list" class="divide-y"></ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </header>
 
-    <form role="search">
-      <label for="search-posts" class="visually-hidden">Search posts...</label>
-      <input type="search" id="search-posts" placeholder="Search posts...">
-    </form>
-  </div>
+    <!-- Main Navigation -->
+    <nav class="main-nav sticky top-0 z-50 w-full bg-white border-b-2 border-gray-200" aria-label="Main Navigation">
+        <div class="max-w-6xl mx-auto px-4 flex items-center justify-between">
+            <!-- Hamburger Menu Toggle (Mobile) -->
+            <button 
+                class="main-nav__toggle md:hidden flex flex-col gap-1.5 w-6 h-6 p-0 bg-none border-0 cursor-pointer" 
+                id="menu-toggle" 
+                aria-expanded="false" 
+                aria-label="Toggle navigation menu">
+                <span class="w-full h-0.5 bg-primary-200 rounded transition-all duration-300"></span>
+                <span class="w-full h-0.5 bg-primary-200 rounded transition-all duration-300"></span>
+                <span class="w-full h-0.5 bg-primary-200 rounded transition-all duration-300"></span>
+            </button>
+            <!-- Navigation Menu -->
+            <ul 
+                class="main-nav__list hidden md:flex md:flex-row gap-0 absolute md:static top-full left-0 right-0 bg-white md:bg-transparent border-t md:border-t-0 max-h-0 md:max-h-none overflow-hidden md:overflow-visible transition-all duration-300" 
+                id="menu">
+                <li class="w-full md:w-auto border-b md:border-b-0">
+                    <a href="#home" class="block px-5 py-4 md:py-4 text-dark-400 font-semibold hover:bg-gray-100 md:hover:bg-transparent hover:text-primary-200 md:border-b-4 md:border-transparent md:hover:border-primary-200 transition-all">Home</a>
+                </li>
+                <li class="w-full md:w-auto border-b md:border-b-0">
+                    <a href="#cpp" class="block px-5 py-4 text-dark-400 font-semibold hover:bg-gray-100 md:hover:bg-transparent hover:text-primary-200 md:border-b-4 md:border-transparent md:hover:border-primary-200 transition-all">C++</a>
+                </li>
+                <li class="w-full md:w-auto border-b md:border-b-0">
+                    <a href="#java" class="block px-5 py-4 text-dark-400 font-semibold hover:bg-gray-100 md:hover:bg-transparent hover:text-primary-200 md:border-b-4 md:border-transparent md:hover:border-primary-200 transition-all">Java</a>
+                </li>
+                <li class="w-full md:w-auto border-b md:border-b-0">
+                    <a href="#webdev" class="block px-5 py-4 text-dark-400 font-semibold hover:bg-gray-100 md:hover:bg-transparent hover:text-primary-200 md:border-b-4 md:border-transparent md:hover:border-primary-200 transition-all">Web Development</a>
+                </li>
+                <li class="w-full md:w-auto">
+                    <a href="#resources" class="block px-5 py-4 text-dark-400 font-semibold hover:bg-gray-100 md:hover:bg-transparent hover:text-primary-200 md:border-b-4 md:border-transparent md:hover:border-primary-200 transition-all">Resources</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-  <nav aria-label="Main Navigation">
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/cpp">C++</a></li>
-      <li><a href="/java">Java</a></li>
-      <li><a href="/web-dev">Web Development</a></li>
-      <li><a href="/tutorials">Tutorials</a></li>
-      <li><a href="/resources">Resources</a></li>
-    </ul>
-  </nav>
-</header>
+    <!-- Main Content -->
+    <main id="main-content" class="main-content min-h-screen">
+        <!-- Featured Post Section -->
+        <section id="home" class="featured-post w-full bg-gradient-to-r from-primary-200 to-primary-300 text-white overflow-hidden shadow-lg py-8 md:py-10 scroll-mt-32">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="flex flex-col md:flex-row items-center min-h-96">
+                    <!-- Featured Post Content -->
+                    <article class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                        <header class="mb-6">
+                            <div class="inline-block mb-4">
+                                <span class="bg-white/20 text-white px-4 py-2 rounded-full text-sm font-bold backdrop-blur-sm">Featured Article</span>
+                            </div>
+                            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">Mastering Your <em>Core Tech Stack</em></h2>
+                            <div class="flex items-center gap-4 text-sm text-white/90 flex-wrap">
+                                <div class="w-12 h-12 bg-white/30 rounded-full flex items-center justify-center text-white font-bold text-lg backdrop-blur-sm" aria-hidden="true">CB</div>
+                                <div class="flex flex-col">
+                                    <span class="font-semibold text-white">Clark Wayne D. Bagtas</span>
+                                    <span class="text-white/80 text-xs"><abbr title="Approximate reading time">12 min read</abbr> • <time datetime="2026-01-11">Jan 11, 2026</time></span>
+                                </div>
+                                <a href="#depth" class="btn btn-primary ml-auto px-4 md:px-6 py-2 text-xs md:text-sm font-semibold whitespace-nowrap">Read Full Article →</a>
+                            </div>
+                        </header>
+                        <p class="text-lg text-white/95 leading-relaxed mb-6">Strategy over trends. <strong>Depth over breadth.</strong> Discover why mastering a focused tech stack—<em>HTML5 & Tailwind</em>, <em>Node.js & JavaScript</em>, <em>MongoDB</em>—is the key to becoming a truly excellent developer.</p>
+                        <div class="flex gap-3 flex-wrap">
+                            <span class="bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-semibold">Full-Stack</span>
+                            <span class="bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-semibold">Architecture</span>
+                            <span class="bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-semibold">Best Practices</span>
+                        </div>
+                    </article>
+                    <!-- Featured Post Image -->
+                    <figure class="w-full md:w-1/2 h-80 md:h-full md:min-h-96 m-0">
+                        <img 
+                            src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1200&q=80" 
+                            alt="Developer working on full-stack application" 
+                            class="w-full h-full object-cover"
+                            loading="lazy">
+                        <figcaption class="sr-only">Featured article: mastering core tech stack for full-stack development</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <div class="max-w-6xl mx-auto px-4 py-8 md:py-10">
+            <!-- Full Article Content (Featured Article) -->
+            <!-- C++ Article Section -->
+            <article id="cpp" class="bg-white rounded-2xl shadow-card p-6 md:p-10 mb-12 scroll-mt-32">
+                <!-- Breadcrumb -->
+                <nav aria-label="Breadcrumb" class="breadcrumb-list">
+                    <a href="#home">Home</a>
+                    <span> / </span>
+                    <a href="#cpp">C++</a>
+                    <span> / </span>
+                    <span class="text-gray-700">My First Language</span>
+                </nav>
+
+                <!-- Article Tags -->
+                <div class="flex gap-2 mb-4 flex-wrap">
+                    <span class="tag">C++</span>
+                    <span class="tag">Fundamentals</span>
+                    <span class="tag">Programming</span>
+                </div>
+
+                <!-- Article Title & Meta -->
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">My First Language: Learning C++</h2>
+                
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-gray-600 border-b pb-6 mb-8">
+                    <div class="flex items-center gap-4">
+                        <div class="author-avatar">CB</div>
+                        <div class="flex flex-col">
+                            <span class="font-semibold text-gray-900">Clark Wayne D. Bagtas</span>
+                            <span class="text-gray-500">FEU Institute of Technology</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <time datetime="2026-01-11" title="Published on January 11, 2026"><strong>Jan 11, 2026</strong></time>
+                        <abbr title="Estimated reading time">8 min read</abbr>
+                    </div>
+                </div>
+
+                <!-- Article Image -->
+                <figure class="w-full h-96 overflow-hidden bg-gray-200 rounded-xl mb-8 shadow-lg">
+                    <img 
+                        src="https://images.unsplash.com/photo-1568716353609-12ddc5c67f04?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1200&q=80" 
+                        alt="C++ programming code on screen" 
+                        class="w-full h-full object-cover"
+                        loading="lazy">
+                    <figcaption class="sr-only">C++ programming environment</figcaption>
+                </figure>
+
+                <!-- Article Content -->
+                <div class="prose prose-lg max-w-none">
+                    <!-- Introduction Section -->
+                    <section class="mb-10">
+                        <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                            <strong>C++</strong> was my <em>introduction to the world of programming</em>, and what an introduction it was! I still remember my first day in the computer lab, staring at a blank screen with a blinking cursor. The professor said, "Today, you'll write your first program." Those words both excited and terrified me.
+                        </p>
+                    </section>
+
+                    <!-- The Beginning Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">The Beginning: Hello, World!</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            When I first typed out that iconic "Hello, World!" program and hit compile, watching those words appear on the console felt like magic. It was a simple program, just a few lines of code, but it opened up an entire universe of possibilities. From that moment, I was hooked.
+                        </p>
+                        
+                        <!-- Code Block -->
+                        <div class="bg-dark-400 text-dark-100 p-6 rounded-lg overflow-x-auto mb-6 shadow-card">
+                            <pre class="font-mono text-sm"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    cout &lt;&lt; "Hello, World!" &lt;&lt; endl;
+    return 0;
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- Core Concepts Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">Core Concepts I Mastered</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            As I progressed through my C++ journey, I encountered and eventually mastered several fundamental concepts:
+                        </p>
+                        <dl class="space-y-3 text-gray-700 mb-6 ml-6">
+                            <dt class="font-bold text-primary-200">Variables and Data Types</dt>
+                            <dd class="ml-4 mb-3">Understanding int, float, char, and how to store information</dd>
+                            <dt class="font-bold text-primary-200">Control Structures</dt>
+                            <dd class="ml-4 mb-3">Making decisions with if-else and creating loops with for and while</dd>
+                            <dt class="font-bold text-primary-200">Functions</dt>
+                            <dd class="ml-4 mb-3">Breaking code into reusable pieces and understanding scope</dd>
+                            <dt class="font-bold text-primary-200">Arrays and Strings</dt>
+                            <dd class="ml-4 mb-3">Working with collections of data</dd>
+                            <dt class="font-bold text-primary-200">Pointers</dt>
+                            <dd class="ml-4 mb-3">The most challenging yet powerful feature of C++</dd>
+                            <dt class="font-bold text-primary-200">Object-Oriented Programming</dt>
+                            <dd class="ml-4">Classes, objects, inheritance, and polymorphism</dd>
+                        </dl>
+                    </section>
+
+                    <!-- The Pointer Struggle Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">The Pointer Struggle</h3>
+                        <div class="bg-primary-50 border-l-4 border-primary-200 p-6 mb-6 rounded">
+                            <p class="text-gray-900 font-semibold mb-2">💡 Pro Tip</p>
+                            <p class="text-gray-700">
+                                I won't lie – <strong>pointers nearly made me quit programming</strong>. The concept of a variable that holds memory addresses instead of values seemed counterintuitive. I spent <em>countless late nights</em> debugging <code>segmentation faults</code>, trying to understand why my program kept crashing.
+                            </p>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            If you're struggling with pointers, draw diagrams! Visualizing memory addresses and what they point to made everything click for me. It's not just about understanding the syntax – it's about understanding what's happening in memory.
+                        </p>
+                    </section>
+
+                    <!-- My First Real Project Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">My First Real Project</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            The turning point in my C++ learning came when I built my first substantial project: a text-based adventure game. It incorporated everything I'd learned – classes for different game objects, pointers for managing dynamic memory, file I/O for saving game state, and complex control flow for the game logic.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            Creating that game taught me more than any textbook could. I learned about software design, debugging techniques, and the satisfaction of solving complex problems. More importantly, it taught me patience and perseverance.
+                        </p>
+                    </section>
+
+                    <!-- Key Takeaways Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">Key Takeaways from Learning C++</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">Strong foundation in programming fundamentals</p>
+                            </div>
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">Understanding of memory management and computer architecture</p>
+                            </div>
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">Problem-solving skills that transfer to any language</p>
+                            </div>
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">Appreciation for high-level languages that abstract complexity</p>
+                            </div>
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200 md:col-span-2">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">Confidence to tackle any programming challenge</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Conclusion Section -->
+                    <section class="mb-10">
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            Looking back, C++ was the perfect first language for me. While it was challenging, it gave me a deep understanding of how computers work at a low level. This foundation has made learning other languages much easier, because I understand what's happening "under the hood."
+                        </p>
+                    </section>
+
+                    <!-- Share Section -->
+                    <section class="border-t pt-8 mt-10">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">Share this article:</h4>
+                        <div class="flex gap-4 flex-wrap">
+                            <a href="https://twitter.com/intent/tweet?text=My%20First%20Language:%20Learning%20C++" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-semibold">Twitter</a>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=" class="bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition-colors font-semibold">LinkedIn</a>
+                            <button class="bg-gray-200 text-gray-900 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors font-semibold" onclick="navigator.clipboard.writeText(window.location.href)">Copy Link</button>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Author Bio Section -->
+                <aside class="bg-gradient-to-r from-gray-50 to-gray-100 p-6 md:p-10 border-t-4 border-primary-200 rounded-lg mt-10" role="complementary" aria-label="Author information">
+                    <div class="flex gap-6 items-start md:items-center flex-col md:flex-row">
+                        <div class="author-avatar text-lg">CB</div>
+                        <div class="flex-1">
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">About Clark Wayne D. Bagtas</h4>
+                            <p class="text-gray-700 mb-4">
+                                A passionate developer and student at <strong>FEU Institute of Technology</strong>. I believe in building a <em>strong foundation</em> before moving forward, mastering fundamentals through <em>deliberate practice</em> and thoughtful problem-solving.
+                            </p>
+                            <nav aria-label="Author social links" class="flex gap-4">
+                                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">Twitter</a>
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">GitHub</a>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">LinkedIn</a>
+                            </nav>
+                        </div>
+                    </div>
+                </aside>
+            </article>
+                <!-- Java Article Section -->
+                <article id="java" class="bg-white rounded-2xl shadow-card p-6 md:p-10 mb-12 scroll-mt-32">
+                <!-- Breadcrumb -->
+                <nav aria-label="Breadcrumb" class="breadcrumb-list">
+                    <a href="#home">Home</a>
+                    <span> / </span>
+                    <a href="#java">Java</a>
+                    <span> / </span>
+                    <span class="text-gray-700">Transitioning to Java</span>
+                </nav>
+
+                <!-- Article Tags -->
+                <div class="flex gap-2 mb-4 flex-wrap">
+                    <span class="tag">Java</span>
+                    <span class="tag">OOP</span>
+                    <span class="tag">Programming</span>
+                </div>
+
+                <!-- Article Title & Meta -->
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Transitioning to Java: Embracing the World of Objects</h2>
+                
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-gray-600 border-b pb-6 mb-8">
+                    <div class="flex items-center gap-4">
+                        <div class="author-avatar">CB</div>
+                        <div class="flex flex-col">
+                            <span class="font-semibold text-gray-900">Clark Wayne D. Bagtas</span>
+                            <span class="text-gray-500">FEU Institute of Technology</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <time datetime="2026-01-11" title="Published: January 11, 2026"><strong>Jan 11, 2026</strong></time>
+                        <abbr title="Approximate reading time"><strong>7 min read</strong></abbr>
+                    </div>
+                </div>
+
+                <!-- Article Image -->
+                <figure class="w-full h-96 overflow-hidden bg-gray-200 rounded-xl mb-8 shadow-lg">
+                    <img 
+                        src="https://images.unsplash.com/photo-1588410885838-169620ac6966?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1200&q=80" 
+                        alt="Java programming environment" 
+                        class="w-full h-full object-cover"
+                        loading="lazy">
+                    <figcaption class="sr-only">Java development workspace</figcaption>
+                </figure>
+
+                <!-- Article Content -->
+                <div class="prose prose-lg max-w-none">
+                    <!-- Introduction Section -->
+                    <section class="mb-10">
+                        <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                            After spending a year mastering <strong>C++</strong>, I made the leap to <strong>Java</strong>. If C++ was my introduction to programming's power, Java was my gateway to understanding how that power could be <em>harnessed in a more elegant, approachable way</em>. The transition wasn't just about learning new syntax—it was about <em>embracing a fundamentally different philosophy</em>: <mark>"Write Once, Run Anywhere."</mark>
+                        </p>
+                    </section>
+
+                    <!-- Why Java? Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">Why Make the Switch?</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            My university curriculum required learning multiple languages, and Java was next on the list. But beyond academic requirements, I was curious. I'd heard that Java was more "human-friendly" than C++. The idea of automatic memory management and a vast ecosystem of libraries intrigued me.
+                        </p>
+                        
+                        <!-- Code Block -->
+                        <div class="bg-dark-400 text-dark-100 p-6 rounded-lg overflow-x-auto mb-6 shadow-card">
+                            <pre class="font-mono text-sm"><code>public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, Java World!");
+    }
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- OOP Concepts Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">Java's Object-Oriented Nature</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            Coming from C++, I was familiar with classes and objects. But Java takes OOP to another level. Everything in Java is an object (except primitive types). This consistent approach made the language feel cohesive and logical:
+                        </p>
+                        <dl class="space-y-3 text-gray-700 mb-6 ml-6">
+                            <dt class="font-bold text-primary-200">Encapsulation</dt>
+                            <dd class="ml-4 mb-3">Built-in access modifiers (public, private, protected) make it easy to control visibility</dd>
+                            <dt class="font-bold text-primary-200">Inheritance</dt>
+                            <dd class="ml-4 mb-3">Clean class hierarchy with the extends keyword</dd>
+                            <dt class="font-bold text-primary-200">Polymorphism</dt>
+                            <dd class="ml-4 mb-3">Method overriding and interfaces provide powerful abstraction</dd>
+                            <dt class="font-bold text-primary-200">Collections Framework</dt>
+                            <dd class="ml-4 mb-3">Lists, Maps, and Sets make data structure management elegant</dd>
+                            <dt class="font-bold text-primary-200">Exception Handling</dt>
+                            <dd class="ml-4 mb-3">Checked exceptions force you to handle errors explicitly</dd>
+                            <dt class="font-bold text-primary-200">Multithreading</dt>
+                            <dd class="ml-4">First-class support for concurrent programming</dd>
+                        </dl>
+                    </section>
+
+                    <!-- The Learning Curve Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">The Learning Curve</h3>
+                        <div class="bg-primary-50 border-l-4 border-primary-200 p-6 mb-6 rounded">
+                            <p class="text-gray-900 font-semibold mb-2">💡 Key Insight</p>
+                            <p class="text-gray-700">
+                                Java felt <em>refreshing after C++</em> because I didn't have to worry about <strong>memory leaks</strong> or <strong>segmentation faults</strong>. The <strong>Java Virtual Machine (JVM)</strong> handles garbage collection automatically, freeing me to focus on writing <em>clean, logical code</em> instead of debugging memory issues.
+                            </p>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            That said, Java has its own complexities. The verbosity of the language initially felt constraining. Type declarations, getter/setter methods, and boilerplate code seemed excessive compared to C++'s more concise syntax. But I soon realized this verbosity was a feature, not a bug—it makes code more readable and maintainable.
+                        </p>
+                    </section>
+
+                    <!-- Real-World Project Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">My First Real Java Project</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            For a course project, I built a Student Management System with a graphical user interface using Java Swing. The project required creating classes for students, courses, and an enrollment system. I had to implement searching, sorting, and file persistence.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            This project taught me that Java's ecosystem is incredibly rich. Need a GUI? Use Swing or JavaFX. Need database connectivity? JDBC is ready. Need to build web applications? Spring Framework awaits. The availability of mature libraries for almost every task was eye-opening.
+                        </p>
+                    </section>
+
+                    <!-- Key Takeaways Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">What Java Taught Me</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">True object-oriented design principles</p>
+                            </div>
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">Importance of readability and maintainability</p>
+                            </div>
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">Power of extensive framework ecosystems</p>
+                            </div>
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">Enterprise-level development patterns</p>
+                            </div>
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200 md:col-span-2">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">Confidence to build scalable, production-ready applications</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Conclusion Section -->
+                    <section class="mb-10">
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            Java transformed my understanding of programming. After C++ taught me the fundamentals, Java showed me how to write clean, maintainable code at scale. Today, Java remains relevant and is widely used in everything from Android development to big data processing and enterprise systems. The skills I learned are as valuable now as they were when I first started.
+                        </p>
+                    </section>
+
+                    <!-- Share Section -->
+                    <section class="border-t pt-8 mt-10">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">Share this article:</h4>
+                        <div class="flex gap-4 flex-wrap">
+                            <a href="https://twitter.com/intent/tweet?text=Transitioning%20to%20Java:%20Embracing%20the%20World%20of%20Objects" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-semibold">Twitter</a>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=" class="bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition-colors font-semibold">LinkedIn</a>
+                            <button class="bg-gray-200 text-gray-900 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors font-semibold" onclick="navigator.clipboard.writeText(window.location.href)">Copy Link</button>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Author Bio Section -->
+                <aside class="bg-gradient-to-r from-gray-50 to-gray-100 p-6 md:p-10 border-t-4 border-primary-200 rounded-lg mt-10" role="complementary" aria-label="Author information">
+                    <div class="flex gap-6 items-start md:items-center flex-col md:flex-row">
+                        <div class="author-avatar text-lg">CB</div>
+                        <div class="flex-1">
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">About Clark Wayne D. Bagtas</h4>
+                            <p class="text-gray-700 mb-4">
+                                A passionate developer and student at <strong>FEU Institute of Technology</strong>. I believe in building a <em>strong foundation</em> before moving forward, mastering fundamentals through <em>deliberate practice</em> and thoughtful problem-solving.
+                            </p>
+                            <nav aria-label="Author social links" class="flex gap-4">
+                                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">Twitter</a>
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">GitHub</a>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">LinkedIn</a>
+                            </nav>
+                        </div>
+                    </div>
+                </aside>
+            </article>
+
+            <!-- Web Development Article Section -->
+            <article id="webdev" class="bg-white rounded-2xl shadow-card p-6 md:p-10 mb-12 scroll-mt-32">
+                <!-- Breadcrumb -->
+                <nav aria-label="Breadcrumb" class="breadcrumb-list">
+                    <a href="#home">Home</a>
+                    <span> / </span>
+                    <a href="#webdev">Web Development</a>
+                    <span> / </span>
+                    <span class="text-gray-700">From Console to Browser</span>
+                </nav>
+
+                <!-- Article Tags -->
+                <div class="flex gap-2 mb-4 flex-wrap">
+                    <span class="tag">Web Dev</span>
+                    <span class="tag">HTML/CSS</span>
+                    <span class="tag">JavaScript</span>
+                </div>
+
+                <!-- Article Title & Meta -->
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">From Console to Browser: My Web Development Journey</h2>
+                
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-gray-600 border-b pb-6 mb-8">
+                    <div class="flex items-center gap-4">
+                        <div class="author-avatar">CB</div>
+                        <div class="flex flex-col">
+                            <span class="font-semibold text-gray-900">Clark Wayne D. Bagtas</span>
+                            <span class="text-gray-500">FEU Institute of Technology</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <time datetime="2026-01-11" title="Published: January 11, 2026"><strong>Jan 11, 2026</strong></time>
+                        <abbr title="Approximate reading time"><strong>12 min read</strong></abbr>
+                    </div>
+                </div>
+
+                <!-- Article Image -->
+                <figure class="w-full h-96 overflow-hidden bg-gray-200 rounded-xl mb-8 shadow-lg">
+                    <img 
+                        src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1200&q=80" 
+                        alt="Developer workspace with full-stack development environment" 
+                        class="w-full h-full object-cover"
+                        loading="lazy">
+                    <figcaption class="sr-only">Full-stack developer working on core tech stack</figcaption>
+                </figure>
+
+                <!-- Article Content -->
+                <div class="prose prose-lg max-w-none">
+                    <!-- Introduction Section -->
+                    <section class="mb-10">
+                        <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                            After two years of building <em>console applications</em> in <strong>C++</strong> and <strong>Java</strong>, I made a significant leap into <strong>web development</strong>. This wasn't just a new language—it was a <em>completely different paradigm</em>. Instead of thinking about memory management and data structures, I had to learn about the <strong>DOM</strong>, <strong>CSS styling</strong>, and <strong>user interfaces</strong>. It was exhilarating and overwhelming at the same time.
+                        </p>
+                    </section>
+
+                    <!-- The First Step Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">The First Step: HTML and CSS</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            Web development starts with the fundamentals: HTML and CSS. I was initially surprised at how different this was from traditional programming. There's no compilation, no memory management, no algorithms to optimize. Instead, I was learning about semantic markup, responsive design, and the box model.
+                        </p>
+                        
+                        <!-- Code Block -->
+                        <div class="bg-dark-400 text-dark-100 p-6 rounded-lg overflow-x-auto mb-6 shadow-card">
+                            <pre class="font-mono text-sm"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My First Web Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello, Web World!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- JavaScript Revolution Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">The JavaScript Revolution</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            HTML and CSS are powerful, but they're static. JavaScript is what brings interactivity to the web. My first JavaScript programs were simple: form validation, event handlers, DOM manipulation. But as I progressed, I realized JavaScript is a full-featured programming language with its own quirks, paradigms, and challenges.
+                        </p>
+                        <dl class="space-y-3 text-gray-700 mb-6 ml-6">
+                            <dt class="font-bold text-primary-200">Event-Driven Programming</dt>
+                            <dd class="ml-4 mb-3">Responding to user interactions like clicks and form submissions</dd>
+                            <dt class="font-bold text-primary-200">Asynchronous Operations</dt>
+                            <dd class="ml-4 mb-3">Callbacks, Promises, and async/await for handling API requests</dd>
+                            <dt class="font-bold text-primary-200">DOM Manipulation</dt>
+                            <dd class="ml-4 mb-3">Dynamically updating the page without reloading</dd>
+                            <dt class="font-bold text-primary-200">ES6+ Features</dt>
+                            <dd class="ml-4 mb-3">Arrow functions, destructuring, classes, and modules</dd>
+                            <dt class="font-bold text-primary-200">Frameworks and Libraries</dt>
+                            <dd class="ml-4">React, Vue, and Angular for building complex UIs</dd>
+                        </dl>
+                    </section>
+
+                    <!-- The Paradigm Shift Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">The Paradigm Shift</h3>
+                        <div class="bg-primary-50 border-l-4 border-primary-200 p-6 mb-6 rounded">
+                            <p class="text-gray-900 font-semibold mb-2">💡 Key Realization</p>
+                            <p class="text-gray-700">
+                                <strong>Web development forced me to think differently</strong> about programming. In C++ and Java, I was focused on <em>logic and algorithms</em>. In web development, I had to learn to think about <strong>user experience</strong>, <strong>accessibility</strong>, <strong>performance</strong>, and <strong>responsive design</strong>. It's not just about making code work—it's about making it work <em>beautifully across all devices and browsers</em>.
+                            </p>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            The debugging experience is also completely different. Instead of compiler errors, I deal with browser DevTools, network requests, and CSS positioning issues. It's a different challenge, but equally rewarding when you see your website come to life in a browser.
+                        </p>
+                    </section>
+
+                    <!-- Full Stack Journey Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">Discovering Full-Stack Development</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            As I progressed in web development, I realized the power of full-stack development—building both the frontend (what users see) and backend (the logic and database). Using technologies like Node.js, Express, and databases, I could apply my programming knowledge to create complete web applications.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            This is where everything clicked. My C++ foundation helped me understand backend concepts, my Java knowledge helped me design scalable systems, and now web development was bringing it all together in a visual, interactive medium.
+                        </p>
+                    </section>
+
+                    <!-- Key Takeaways Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">What Web Development Taught Me</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">User-centric design and accessibility</p>
+                            </div>
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">The power of modern development tools and frameworks</p>
+                            </div>
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">Responsive and adaptive design principles</p>
+                            </div>
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">Cross-browser compatibility and performance optimization</p>
+                            </div>
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200 md:col-span-2">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">Full-stack capability to build end-to-end applications</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Conclusion Section -->
+                    <section class="mb-10">
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            The journey from console programming to web development has been transformative. Each technology I learned built upon the previous one, creating a solid foundation for becoming a versatile developer. Today, I don't just write code—I create experiences. And that's the magic of web development.
+                        </p>
+                    </section>
+
+                    <!-- Share Section -->
+                    <section class="border-t pt-8 mt-10">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">Share this article:</h4>
+                        <div class="flex gap-4 flex-wrap">
+                            <a href="https://twitter.com/intent/tweet?text=From%20Console%20to%20Browser:%20My%20Web%20Development%20Journey" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-semibold">Twitter</a>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=" class="bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition-colors font-semibold">LinkedIn</a>
+                            <button class="bg-gray-200 text-gray-900 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors font-semibold" onclick="navigator.clipboard.writeText(window.location.href)">Copy Link</button>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Author Bio Section -->
+                <aside class="bg-gradient-to-r from-gray-50 to-gray-100 p-6 md:p-10 border-t-4 border-primary-200 rounded-lg mt-10" role="complementary" aria-label="Author information">
+                    <div class="flex gap-6 items-start md:items-center flex-col md:flex-row">
+                        <div class="author-avatar text-lg">CB</div>
+                        <div class="flex-1">
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">About Clark Wayne D. Bagtas</h4>
+                            <p class="text-gray-700 mb-4">
+                                A passionate developer and student at <strong>FEU Institute of Technology</strong>. I believe in building a <em>strong foundation</em> before moving forward, mastering fundamentals through <em>deliberate practice</em> and thoughtful problem-solving.
+                            </p>
+                            <nav aria-label="Author social links" class="flex gap-4">
+                                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">Twitter</a>
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">GitHub</a>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">LinkedIn</a>
+                            </nav>
+                        </div>
+                    </div>
+                </aside>
+            </article>
+
+            <!-- Mastering Depth Article Section -->
+            <article id="depth" class="bg-white rounded-2xl shadow-card p-6 md:p-10 mb-12 scroll-mt-32">
+                <!-- Breadcrumb -->
+                <nav aria-label="Breadcrumb" class="breadcrumb-list">
+                    <a href="#home">Home</a>
+                    <span> / </span>
+                    <a href="#webdev">Web Development</a>
+                    <span> / </span>
+                    <span class="text-gray-700">Mastering Depth Over Breadth</span>
+                </nav>
+
+                <!-- Article Tags -->
+                <div class="flex gap-2 mb-4 flex-wrap">
+                    <span class="tag">Web Dev</span>
+                    <span class="tag">Full-Stack</span>
+                    <span class="tag">Best Practices</span>
+                </div>
+
+                <!-- Article Title & Meta -->
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Depth Over Breadth: Mastering My Core Tech Stack</h2>
+                
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-gray-600 border-b pb-6 mb-8">
+                    <div class="flex items-center gap-4">
+                        <div class="author-avatar">CB</div>
+                        <div class="flex flex-col">
+                            <span class="font-semibold text-gray-900">Clark Wayne D. Bagtas</span>
+                            <span class="text-gray-500">FEU Institute of Technology</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <time datetime="2026-01-11" title="Published: January 11, 2026"><strong>Jan 11, 2026</strong></time>
+                        <abbr title="Approximate reading time"><strong>12 min read</strong></abbr>
+                    </div>
+                </div>
+
+                <!-- Article Image -->
+                <figure class="w-full h-96 overflow-hidden bg-gray-200 rounded-xl mb-8 shadow-lg">
+                    <img 
+                        src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1200&q=80" 
+                        alt="Developer working on full-stack application" 
+                        class="w-full h-full object-cover"
+                        loading="lazy">
+                    <figcaption class="sr-only">Full-stack development workspace</figcaption>
+                </figure>
+
+                <!-- Article Content -->
+                <div class="prose prose-lg max-w-none">
+                    <!-- Introduction Section -->
+                    <section class="mb-10">
+                        <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                            After spending my first year learning multiple programming languages—<strong>C++, Java, and JavaScript</strong>—I've come to a critical realization: being a <em>"jack of all trades, master of none" is a trap</em> that many junior developers fall into. The technology landscape is vast, and it's tempting to learn everything. But I've decided to <strong>pivot my strategy entirely</strong>. Instead of chasing every new framework and library that emerges, I'm committing to <em>mastering a core tech stack with deep expertise</em>.
+                        </p>
+                    </section>
+
+                    <!-- The Realization Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">The Realization: Quality Over Quantity</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            It hit me during a project review when my mentor asked, "Can you explain why you chose this CSS approach?" I stumbled through an answer, realizing I'd been using Tailwind CSS without truly understanding the principles behind utility-first design. I knew React syntax, but I didn't deeply understand component lifecycle or state management patterns. I was skimming the surface of too many technologies.
+                        </p>
+                        <div class="bg-primary-50 border-l-4 border-primary-200 p-6 mb-6 rounded">
+                            <p class="text-gray-900 font-semibold mb-2">💡 Key Insight</p>
+                            <p class="text-gray-700">
+                                <strong>Depth creates expertise.</strong> Expertise creates confidence. Confidence creates impact. <em>This year, I'm choosing depth</em>. I'm selecting a <strong>focused tech stack</strong> and becoming <em>genuinely excellent</em> at it, rather than being mediocre at twenty different things.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Frontend: HTML5 & Tailwind Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">Frontend Foundation: HTML5 Semantics & Tailwind CSS</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            For the frontend, I'm doubling down on HTML5 semantics and Tailwind CSS. Not because they're trendy, but because they represent solid foundational principles. HTML5 semantic elements—<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>—aren't just tags. They communicate meaning and structure. They're essential for accessibility, SEO, and maintainability.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            Tailwind CSS forces me to think systematically about design. Rather than writing custom CSS and fighting specificity issues, I'm learning to compose designs from utility classes. This discipline translates directly to how I think about responsive design, spacing systems, and visual consistency.
+                        </p>
+                        
+                        <!-- Code Block -->
+                        <div class="bg-dark-400 text-dark-100 p-6 rounded-lg overflow-x-auto mb-6 shadow-card">
+                            <pre class="font-mono text-sm"><code>&lt;article class="bg-white rounded-2xl shadow-card p-6 md:p-10"&gt;
+    &lt;header class="mb-6"&gt;
+        &lt;h2 class="text-3xl font-bold text-gray-900 mb-4"&gt;
+            Article Title
+        &lt;/h2&gt;
+        &lt;time class="text-sm text-gray-600"&gt;
+            January 11, 2026
+        &lt;/time&gt;
+    &lt;/header&gt;
+    &lt;section class="prose prose-lg max-w-none"&gt;
+        &lt;p&gt;Article content here...&lt;/p&gt;
+    &lt;/section&gt;
+&lt;/article&gt;</code></pre>
+                        </div>
+
+                        <p class="text-gray-700 leading-relaxed">
+                            My goal this year is to become exceptionally skilled at building beautiful, accessible, responsive frontends with HTML5 and Tailwind. Every layout, every component, every interaction will be deliberate and well-reasoned.
+                        </p>
+                    </section>
+
+                    <!-- Backend: Node.js & JavaScript Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">Backend Mastery: Node.js, npm, Vite & JavaScript</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            On the backend, I'm focusing on Node.js and JavaScript. JavaScript has evolved tremendously, and modern Node.js is a legitimate backend platform used in production by massive companies. I'm investing time in:
+                        </p>
+                        <ul class="space-y-3 text-gray-700 mb-6 ml-6">
+                            <li class="flex items-start gap-3">
+                                <span class="text-primary-200 font-bold mt-1">•</span>
+                                <span><strong>npm Ecosystem:</strong> Understanding package management, scripts, dependencies, and how to build efficient workflows</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-primary-200 font-bold mt-1">•</span>
+                                <span><strong>Vite Build System:</strong> Learning how modern bundlers work, configuration, optimization, and why it's superior to older tools</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-primary-200 font-bold mt-1">•</span>
+                                <span><strong>JavaScript Deep Dive:</strong> Mastering async/await, promises, closures, prototypes, and functional programming paradigms</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-primary-200 font-bold mt-1">•</span>
+                                <span><strong>Node.js Server Architecture:</strong> Building scalable APIs, middleware, error handling, and production-ready applications</span>
+                            </li>
+                        </ul>
+                        <p class="text-gray-700 leading-relaxed">
+                            The advantage of this approach is that JavaScript unifies my stack. I write the same language on the frontend and backend, allowing me to focus on architecture and patterns rather than language syntax.
+                        </p>
+                    </section>
+
+                    <!-- Database: MongoDB Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">Data Layer: MongoDB</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            For data persistence, I've chosen MongoDB. It's not the "best" database for everything—relational databases have their place—but MongoDB's document model aligns perfectly with JavaScript objects. I'm learning:
+                        </p>
+                        <ul class="space-y-3 text-gray-700 mb-6 ml-6">
+                            <li class="flex items-start gap-3">
+                                <span class="text-primary-200 font-bold mt-1">•</span>
+                                <span><strong>Schema Design:</strong> How to structure documents efficiently and avoid anti-patterns</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-primary-200 font-bold mt-1">•</span>
+                                <span><strong>Indexing & Performance:</strong> Understanding how MongoDB executes queries and how to optimize them</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-primary-200 font-bold mt-1">•</span>
+                                <span><strong>Aggregation Pipeline:</strong> Mastering complex data transformations and analytics</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-primary-200 font-bold mt-1">•</span>
+                                <span><strong>Data Validation & Security:</strong> Ensuring data integrity and protecting against injection attacks</span>
+                            </li>
+                        </ul>
+                        <p class="text-gray-700 leading-relaxed">
+                            By mastering MongoDB, I'm not just learning how to store data—I'm learning database fundamentals that transfer to any system.
+                        </p>
+                    </section>
+
+                    <!-- Future Roadmap Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">The Future: TypeScript & React in Q3 2026</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            This is important: I'm not learning TypeScript and React right now. Why? Because I'm not ready. I need to master vanilla JavaScript first. I need to truly understand how browsers work, how the DOM operates, and how state management works at the fundamental level. Learning React too early would trap me in the framework without understanding the underlying principles.
+                        </p>
+                        <div class="bg-primary-50 border-l-4 border-primary-200 p-6 mb-6 rounded">
+                            <p class="text-gray-900 font-semibold mb-2">📅 Timeline</p>
+                            <p class="text-gray-700">
+                                By Q3 2026 (July-September), I'll transition to TypeScript and React. But this will be built on a foundation of deep JavaScript knowledge, strong HTML5 semantics, and practical experience building real applications with Node.js and MongoDB. When I do learn TypeScript, I'll appreciate its value. When I learn React, I'll understand why it solves problems.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- The Discipline Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">The Discipline of Saying No</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            This strategy requires discipline. There will be amazing frameworks released. There will be impressive libraries I'm tempted to learn. There will be colleagues suggesting I learn X, Y, or Z. But I'm committing to my focused stack. This doesn't mean I'll never learn other technologies—it means I'll do so deliberately and in service of the depth I'm building, not out of fear of missing out.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            The irony is that by choosing depth, I'll actually become more versatile faster. Deep understanding of one stack creates transferable knowledge that applies everywhere. The patterns I learn in MongoDB work in PostgreSQL. The architectural principles I master with Node.js apply to any backend. The responsive design discipline I build with Tailwind transfers to any CSS framework.
+                        </p>
+                    </section>
+
+                    <!-- Key Takeaways Section -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 mt-8">My Commitment for 2026</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">Master HTML5 semantics and Tailwind CSS deeply</p>
+                            </div>
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">Become proficient with Node.js and modern JavaScript</p>
+                            </div>
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">Build production-quality full-stack applications</p>
+                            </div>
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">Master MongoDB and database design principles</p>
+                            </div>
+                            <div class="bg-primary-50 p-4 rounded-lg border border-primary-200 md:col-span-2">
+                                <p class="text-gray-900 font-semibold text-lg mb-2">✓</p>
+                                <p class="text-gray-700">Prepare a strong foundation for TypeScript and React in Q3 2026</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Conclusion Section -->
+                    <section class="mb-10">
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            The journey from generalist to specialist isn't about limiting myself—it's about focusing my energy where it matters most. By mastering my core tech stack, I'm not restricting my growth. I'm accelerating it. I'm building a foundation so strong that learning adjacent technologies will be trivial. I'm choosing depth over breadth, and I believe this is the path to becoming a truly excellent developer.
+                        </p>
+                    </section>
+
+                    <!-- Share Section -->
+                    <section class="border-t pt-8 mt-10">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">Share this article:</h4>
+                        <div class="flex gap-4 flex-wrap">
+                            <a href="https://twitter.com/intent/tweet?text=Depth%20Over%20Breadth:%20Mastering%20My%20Core%20Tech%20Stack" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-semibold">Twitter</a>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=" class="bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition-colors font-semibold">LinkedIn</a>
+                            <button class="bg-gray-200 text-gray-900 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors font-semibold" onclick="navigator.clipboard.writeText(window.location.href)">Copy Link</button>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Author Bio Section -->
+                <aside class="bg-gradient-to-r from-gray-50 to-gray-100 p-6 md:p-10 border-t-4 border-primary-200 rounded-lg mt-10" role="complementary" aria-label="Author information">
+                    <div class="flex gap-6 items-start md:items-center flex-col md:flex-row">
+                        <div class="author-avatar text-lg">CB</div>
+                        <div class="flex-1">
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">About Clark Wayne D. Bagtas</h4>
+                            <p class="text-gray-700 mb-4">
+                                A passionate developer and student at <strong>FEU Institute of Technology</strong>. I believe in building a <em>strong foundation</em> before moving forward, mastering fundamentals through <em>deliberate practice</em> and thoughtful problem-solving.
+                            </p>
+                            <nav aria-label="Author social links" class="flex gap-4">
+                                <a href="https://x.com/kuraku_clark" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">Twitter</a>
+                                <a href="https://github.com/PipoyBabu" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">GitHub</a>
+                                <a href="https://www.linkedin.com/in/clark-wayne-bagtas-a85b7a380/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">LinkedIn</a>
+                            </nav>
+                        </div>
+                    </div>
+                </aside>
+            </article>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Articles Section -->
+                <div class="lg:col-span-2 flex flex-col gap-8">
+                    <!-- Featured Articles -->
+                    <section>
+                        <h3 class="section-title mb-6">Featured Articles</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                            <article class="article-card">
+                                <figure class="h-48 overflow-hidden bg-gray-200">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1568716353609-12ddc5c67f04?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80" 
+                                        alt="C++ programming code" 
+                                        class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                                        loading="lazy">
+                                </figure>
+                                <div class="p-5 flex flex-col flex-grow">
+                                    <div class="flex gap-2 mb-3 flex-wrap">
+                                        <span class="tag">C++</span>
+                                        <span class="tag">Fundamentals</span>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-gray-900 mb-3">
+                                        <a href="#article2" class="hover:text-primary-200 transition-colors">My First Language: Learning C++</a>
+                                    </h4>
+                                    <p class="text-gray-600 text-sm leading-relaxed flex-grow mb-4">How C++ taught me the foundations of programming, from variables to pointers and object-oriented design.</p>
+                                    <div class="flex gap-3 text-xs text-gray-500 border-t pt-3">
+                                        <time datetime="2026-01-11">Jan 11, 2026</time>
+                                        <span>8 min read</span>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="article-card">
+                                <figure class="h-48 overflow-hidden bg-gray-200">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1588410885838-169620ac6966?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80" 
+                                        alt="Java development and coffee" 
+                                        class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                                        loading="lazy">
+                                </figure>
+                                <div class="p-5 flex flex-col flex-grow">
+                                    <div class="flex gap-2 mb-3 flex-wrap">
+                                        <span class="tag">Java</span>
+                                        <span class="tag">OOP</span>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-gray-900 mb-3">
+                                        <a href="#article3" class="hover:text-primary-200 transition-colors">Transitioning to Java</a>
+                                    </h4>
+                                    <p class="text-gray-600 text-sm leading-relaxed flex-grow mb-4">My experience moving from C++ to Java and discovering the power of object-oriented programming.</p>
+                                    <div class="flex gap-3 text-xs text-gray-500 border-t pt-3">
+                                        <time datetime="2026-01-11">Jan 11, 2026</time>
+                                        <span>7 min read</span>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="article-card">
+                                <figure class="h-48 overflow-hidden bg-gray-200">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1649443992089-8bf1fc3c42f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600&q=80" 
+                                        alt="Web development workspace" 
+                                        class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                                        loading="lazy">
+                                </figure>
+                                <div class="p-5 flex flex-col flex-grow">
+                                    <div class="flex gap-2 mb-3 flex-wrap">
+                                        <span class="tag">Web Dev</span>
+                                        <span class="tag">HTML/CSS</span>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-gray-900 mb-3">
+                                        <a href="#article4" class="hover:text-primary-200 transition-colors">From Console to Browser</a>
+                                    </h4>
+                                    <p class="text-gray-600 text-sm leading-relaxed flex-grow mb-4">Discovering web development and how it changed my perspective on programming entirely.</p>
+                                    <div class="flex gap-3 text-xs text-gray-500 border-t pt-3">
+                                        <time datetime="2026-01-11">Jan 11, 2026</time>
+                                        <span>10 min read</span>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="article-card">
+                                <figure class="h-48 overflow-hidden bg-gray-200">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1200&q=80" 
+                                        alt="Web development focus" 
+                                        class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                                        loading="lazy">
+                                </figure>
+                                <div class="p-5 flex flex-col flex-grow">
+                                    <div class="flex gap-2 mb-3 flex-wrap">
+                                        <span class="tag">Web Dev</span>
+                                        <span class="tag">HTML/CSS</span>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-gray-900 mb-3">
+                                        <a href="#article4" class="hover:text-primary-200 transition-colors">Depth Over Breadth: Mastering My Core Tech Stack</a>
+                                    </h4>
+                                    <p class="text-gray-600 text-sm leading-relaxed flex-grow mb-4">Strategy over trends. Discover why mastering a focused tech stack is the key to becoming truly excellent.</p>
+                                    <div class="flex gap-3 text-xs text-gray-500 border-t pt-3">
+                                        <time datetime="2026-01-11">Jan 11, 2026</time>
+                                        <span>12 min read</span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Sidebar Section -->
+                <aside class="lg:col-span-1 flex flex-col gap-6" role="complementary" aria-label="Blog sidebar">
+                    <!-- Follow Card -->
+                    <section class="follow-card" aria-labelledby="author-card-name">
+                        <div class="avatar-large" aria-hidden="true">CB</div>
+                        <div>
+                            <h3 class="font-bold text-gray-900" id="author-card-name">Clark Wayne D. Bagtas</h3>
+                            <p class="text-sm text-gray-600\"><strong>FEU Institute of Technology</strong> • documenting the programming journey</p>
+                        </div>
+                        <nav aria-label="Author social links" class="flex gap-3">
+                            <a href="https://x.com/kuraku_clark" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">Twitter</a>
+                            <a href="https://github.com/PipoyBabu" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">GitHub</a>
+                            <a href="https://www.linkedin.com/in/clark-wayne-bagtas-a85b7a380/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">LinkedIn</a>
+                        </nav>
+                        <button class="btn btn-primary w-full">Follow</button>
+                    </section>
+
+                        <!-- Categories Widget -->
+                        <section class="sidebar-widget">
+                        <h3 class="text-xl font-bold text-gray-900 border-b-2 border-primary-200 pb-3 mb-4">Categories</h3>
+                        <nav aria-label="Article categories">
+                            <ul class="space-y-2">
+                                <li><a href="#cpp" class="flex justify-between items-center hover:text-primary-200 transition-colors font-semibold text-primary-200">C++ Programming<span class="bg-primary-50 text-primary-200 px-2 py-1 rounded-full text-xs font-bold">1</span></a></li>
+                                <li><a href="#java" class="flex justify-between items-center hover:text-primary-200 transition-colors font-semibold text-primary-200">Java Development<span class="bg-primary-50 text-primary-200 px-2 py-1 rounded-full text-xs font-bold">1</span></a></li>
+                                <li><a href="#webdev" class="flex justify-between items-center hover:text-primary-200 transition-colors font-semibold text-primary-200">Web Development<span class="bg-primary-50 text-primary-200 px-2 py-1 rounded-full text-xs font-bold">2</span></a></li>
+                                <li><a href="#depth" class="flex justify-between items-center hover:text-primary-200 transition-colors font-semibold text-primary-200">Architecture & Strategy<span class="bg-primary-50 text-primary-200 px-2 py-1 rounded-full text-xs font-bold">1</span></a></li>
+                            </ul>
+                        </nav>
+                    </section>
+
+                    <!-- Tags Widget -->
+                    <section class="sidebar-widget">
+                        <h3 class="text-xl font-bold text-gray-900 border-b-2 border-primary-200 pb-3 mb-4">Tags</h3>
+                        <nav aria-label="Article tags">
+                            <div class="flex flex-wrap gap-2">
+                                <a href="#tag" class="tag-link">C++</a>
+                                <a href="#tag" class="tag-link">Java</a>
+                                <a href="#tag" class="tag-link">HTML</a>
+                                <a href="#tag" class="tag-link">CSS</a>
+                                <a href="#tag" class="tag-link">OOP</a>
+                                <a href="#tag" class="tag-link">Tutorial</a>
+                                <a href="#tag" class="tag-link">Learning</a>
+                                <a href="#tag" class="tag-link">Web Dev</a>
+                                <a href="#tag" class="tag-link">Programming</a>
+                            </div>
+                        </nav>
+                    </section>
+
+                    <!-- Popular Posts -->
+                    <section class="sidebar-widget">
+                        <h3 class="text-xl font-bold text-gray-900 border-b-2 border-primary-200 pb-3 mb-4">Popular Posts</h3>
+                        <ul class="space-y-3 popular-posts">
+                            <li>
+                                <img src="https://images.unsplash.com/photo-1568716353609-12ddc5c67f04?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=200&q=60" alt="My First Language: Learning C++">
+                                <div>
+                                    <a href="#cpp" class="font-semibold text-gray-900 hover:text-primary-200">My First Language: Learning C++</a>
+                                    <div class="text-xs text-gray-500">Jan 11, 2026</div>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="https://images.unsplash.com/photo-1588410885838-169620ac6966?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=200&q=60" alt="Transitioning to Java: Embracing Objects">
+                                <div>
+                                    <a href="#java" class="font-semibold text-gray-900 hover:text-primary-200">Transitioning to Java: Embracing Objects</a>
+                                    <div class="text-xs text-gray-500">Jan 11, 2026</div>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="https://images.unsplash.com/photo-1649443992089-8bf1fc3c42f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=200&q=60" alt="From Console to Browser: My Web Development Journey">
+                                <div>
+                                    <a href="#webdev" class="font-semibold text-gray-900 hover:text-primary-200">From Console to Browser: Web Dev Journey</a>
+                                    <div class="text-xs text-gray-500">Jan 11, 2026</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                </aside>
+            </div>
+
+            <!-- Resources Section -->
+            <section id="resources" class="bg-white rounded-2xl shadow-card p-6 md:p-10 mb-12 scroll-mt-32">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Learning Resources</h2>
+                <p class="text-lg text-gray-700 mb-8">Curated collection of educational resources to help you master programming, web development, and software engineering.</p>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- C++ Resources -->
+                    <div class="border-l-4 border-primary-200 pl-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">C++ Learning</h3>
+                        <ul class="space-y-3">
+                            <li><a href="https://www.cplusplus.com/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">cplusplus.com</a> - C++ Reference and Tutorials</li>
+                            <li><a href="https://www.learncpp.com/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">LearnCpp.com</a> - Comprehensive C++ Tutorial</li>
+                            <li><a href="https://www.youtube.com/results?search_query=c%2B%2B+tutorial" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">YouTube</a> - C++ Tutorial Videos</li>
+                        </ul>
+                    </div>
+
+                    <!-- Java Resources -->
+                    <div class="border-l-4 border-primary-200 pl-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Java Learning</h3>
+                        <ul class="space-y-3">
+                            <li><a href="https://www.oracle.com/java/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">Oracle Java</a> - Official Java Documentation</li>
+                            <li><a href="https://www.w3schools.com/java/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">W3Schools Java</a> - Interactive Java Tutorials</li>
+                            <li><a href="https://www.youtube.com/results?search_query=java+tutorial" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">YouTube</a> - Java Programming Videos</li>
+                        </ul>
+                    </div>
+
+                    <!-- Web Development Resources -->
+                    <div class="border-l-4 border-primary-200 pl-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Web Development</h3>
+                        <ul class="space-y-3">
+                            <li><a href="https://www.w3schools.com/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">W3Schools</a> - HTML, CSS, JavaScript Reference</li>
+                            <li><a href="https://developer.mozilla.org/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">MDN Web Docs</a> - Mozilla Developer Network</li>
+                            <li><a href="https://www.youtube.com/results?search_query=web+development+tutorial" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">YouTube</a> - Web Dev Tutorials</li>
+                        </ul>
+                    </div>
+
+                    <!-- Frontend Frameworks -->
+                    <div class="border-l-4 border-primary-200 pl-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Frontend Frameworks</h3>
+                        <ul class="space-y-3">
+                            <li><a href="https://react.dev/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">React</a> - Learn React.js Official</li>
+                            <li><a href="https://vuejs.org/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">Vue.js</a> - Progressive JavaScript Framework</li>
+                            <li><a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">Tailwind CSS</a> - Utility-First CSS Framework</li>
+                        </ul>
+                    </div>
+
+                    <!-- Backend & Databases -->
+                    <div class="border-l-4 border-primary-200 pl-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Backend & Databases</h3>
+                        <ul class="space-y-3">
+                            <li><a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">Node.js</a> - JavaScript Runtime</li>
+                            <li><a href="https://www.mongodb.com/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">MongoDB</a> - NoSQL Database</li>
+                            <li><a href="https://expressjs.com/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">Express.js</a> - Web Application Framework</li>
+                        </ul>
+                    </div>
+
+                    <!-- General Programming -->
+                    <div class="border-l-4 border-primary-200 pl-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">General Programming</h3>
+                        <ul class="space-y-3">
+                            <li><a href="https://www.codecademy.com/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">Codecademy</a> - Interactive Coding Lessons</li>
+                            <li><a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">FreeCodeCamp</a> - Free Programming Courses</li>
+                            <li><a href="https://stackoverflow.com/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">Stack Overflow</a> - Q&A Community</li>
+                        </ul>
+                    </div>
+
+                    <!-- YouTube Channels -->
+                    <div class="border-l-4 border-primary-200 pl-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Popular YouTube Channels</h3>
+                        <ul class="space-y-3">
+                            <li><a href="https://www.youtube.com/@TraversyMedia" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">Traversy Media</a> - Web Development & More</li>
+                            <li><a href="https://www.youtube.com/@ProgrammingwithMosh" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">Programming with Mosh</a> - Programming Fundamentals</li>
+                            <li><a href="https://www.youtube.com/@CodingTrain" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">The Coding Train</a> - Creative Coding</li>
+                        </ul>
+                    </div>
+
+                    <!-- Documentation & Guides -->
+                    <div class="border-l-4 border-primary-200 pl-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Documentation & Guides</h3>
+                        <ul class="space-y-3">
+                            <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">GitHub</a> - Version Control & Open Source</li>
+                            <li><a href="https://www.git-scm.com/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">Git</a> - Version Control System</li>
+                            <li><a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">TypeScript</a> - Typed JavaScript</li>
+                        </ul>
+                    </div>
+
+                    <!-- Online Judges & Practice -->
+                    <div class="border-l-4 border-primary-200 pl-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Practice & Challenges</h3>
+                        <ul class="space-y-3">
+                            <li><a href="https://leetcode.com/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">LeetCode</a> - Algorithm Practice</li>
+                            <li><a href="https://www.hackerrank.com/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">HackerRank</a> - Coding Challenges</li>
+                            <li><a href="https://www.codewars.com/" target="_blank" rel="noopener noreferrer" class="text-primary-200 hover:text-primary-300 font-semibold">Codewars</a> - Gamified Coding Challenges</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-10 p-6 bg-primary-50 border border-primary-200 rounded-lg">
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">💡 Tip for Learning</h4>
+                    <p class="text-gray-700">The best way to learn programming is by <strong>doing</strong>. Use these resources not just to read and watch, but to actively code along. Create projects, solve problems, and build things. That's where real learning happens.</p>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="bg-gradient-to-r from-primary-200 to-primary-300 rounded-2xl shadow-card p-6 md:p-10 mb-12 scroll-mt-32 text-white">
+                <div class="max-w-2xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+                    <p class="text-lg text-white/90 mb-8">Have questions, feedback, or want to collaborate? I'd love to hear from you. Fill out the form below and I'll get back to you as soon as possible.</p>
+                    
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-semibold mb-2">Name *</label>
+                                <input 
+                                    type="text" 
+                                    id="name" 
+                                    name="name" 
+                                    required 
+                                    class="w-full px-4 py-3 rounded-lg bg-white/95 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white transition-all"
+                                    placeholder="Your name">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-semibold mb-2">Email *</label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    required 
+                                    class="w-full px-4 py-3 rounded-lg bg-white/95 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white transition-all"
+                                    placeholder="your.email@example.com">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-sm font-semibold mb-2">Subject *</label>
+                            <input 
+                                type="text" 
+                                id="subject" 
+                                name="subject" 
+                                required 
+                                class="w-full px-4 py-3 rounded-lg bg-white/95 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white transition-all"
+                                placeholder="What is this about?">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-semibold mb-2">Message *</label>
+                            <textarea 
+                                id="message" 
+                                name="message" 
+                                required 
+                                rows="5" 
+                                class="w-full px-4 py-3 rounded-lg bg-white/95 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white transition-all resize-none"
+                                placeholder="Your message here..."></textarea>
+                        </div>
+                        
+                        <button 
+                            type="submit" 
+                            class="w-full bg-white text-primary-200 font-bold py-3 rounded-lg hover:bg-gray-100 transition-colors">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Creator/About Section -->
+            <section id="about" class="bg-white rounded-2xl shadow-card p-6 md:p-10 mb-12 scroll-mt-32">
+                <div class="max-w-4xl mx-auto">
+                    <div class="flex flex-col md:flex-row gap-8 items-start">
+                        <div class="md:w-1/3">
+                            <div class="bg-gradient-to-br from-primary-200 to-primary-300 rounded-2xl p-8 text-white text-center">
+                                <div class="text-6xl font-bold mb-4">CB</div>
+                                <h3 class="text-2xl font-bold mb-2">Clark Wayne D. Bagtas</h3>
+                                <p class="text-white/90 mb-4">Full-Stack Developer</p>
+                                <p class="text-sm text-white/80">FEU Institute of Technology</p>
+                            </div>
+                        </div>
+                        
+                        <div class="md:w-2/3">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">About the Creator</h2>
+                            
+                            <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                                I'm Clark Wayne D. Bagtas, a passionate programmer and student at <strong>FEU Institute of Technology</strong>. This blog, CodeJourney, documents my evolution as a developer—from my first "Hello World" in C++ to mastering full-stack web development.
+                            </p>
+                            
+                            <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                                My philosophy is simple: <em>depth over breadth</em>. Rather than chasing every new framework, I'm committed to mastering a focused tech stack: <strong>HTML5, Tailwind CSS, JavaScript, Node.js, and MongoDB</strong>. I believe that deep understanding of core technologies creates a foundation strong enough for any challenge.
+                            </p>
+                            
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4 mt-6">My Journey</h3>
+                            <ul class="space-y-3 text-gray-700 mb-6 ml-6">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-primary-200 font-bold mt-1">▸</span>
+                                    <span><strong>C++ Fundamentals:</strong> Building problem-solving skills and understanding low-level programming concepts</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-primary-200 font-bold mt-1">▸</span>
+                                    <span><strong>Java OOP:</strong> Learning object-oriented design, architecture, and scalable application structure</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-primary-200 font-bold mt-1">▸</span>
+                                    <span><strong>Web Development:</strong> Transitioning from console to browser, discovering responsive design and user experience</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-primary-200 font-bold mt-1">▸</span>
+                                    <span><strong>Full-Stack Mastery:</strong> Bringing it all together with HTML5, Tailwind, Node.js, and MongoDB</span>
+                                </li>
+                            </ul>
+                            
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Connect With Me</h3>
+                            <nav aria-label="Creator social links" class="flex gap-4 flex-wrap">
+                                <a href="https://x.com/kuraku_clark" target="_blank" rel="noopener noreferrer" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-semibold">Twitter</a>
+                                <a href="https://github.com/PipoyBabu" target="_blank" rel="noopener noreferrer" class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition-colors font-semibold">GitHub</a>
+                                <a href="https://www.linkedin.com/in/clark-wayne-bagtas-a85b7a380/" target="_blank" rel="noopener noreferrer" class="bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition-colors font-semibold">LinkedIn</a>
+                                <a href="mailto:bagtasclarkwayne.pipoy@gmail.com" class="bg-primary-200 text-white px-4 py-2 rounded-lg hover:bg-primary-300 transition-colors font-semibold">Email</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Contact Confirmation Modal -->
+    <div id="contact-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center animate-fade-in">
+            <div class="text-5xl mb-4">✓</div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
+            <p class="text-gray-600 mb-6">Thank you for reaching out, <span id="visitor-name" class="font-semibold"></span>! I'll get back to you as soon as possible.</p>
+            <button 
+                onclick="document.getElementById('contact-modal').classList.add('hidden')" 
+                class="w-full bg-primary-200 text-white font-bold py-3 rounded-lg hover:bg-primary-300 transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Styles -->
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+    </style>
+
+    <!-- Footer -->
+    <footer class="w-full bg-dark-400 text-dark-100 py-12 md:py-16 lg:py-20">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 mb-8">
+                <div class="col-span-2 sm:col-span-1">
+                    <h4 class="text-white font-bold text-base md:text-lg mb-4">CodeJourney</h4>
+                    <p class="text-dark-200 text-xs md:text-sm leading-relaxed">A blog documenting my journey through the world of programming, one language at a time.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-base md:text-lg mb-4">Categories</h4>
+                    <nav aria-label="Footer categories">
+                        <ul class="space-y-1 md:space-y-2">
+                            <li><a href="#cpp" class="text-dark-200 hover:text-primary-200 transition-colors text-xs md:text-sm">C++</a></li>
+                            <li><a href="#java" class="text-dark-200 hover:text-primary-200 transition-colors text-xs md:text-sm">Java</a></li>
+                            <li><a href="#webdev" class="text-dark-200 hover:text-primary-200 transition-colors text-xs md:text-sm">Web Dev</a></li>
+                            <li><a href="#depth" class="text-dark-200 hover:text-primary-200 transition-colors text-xs md:text-sm">Architecture</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-base md:text-lg mb-4">Quick Links</h4>
+                    <nav aria-label="Footer quick links">
+                        <ul class="space-y-1 md:space-y-2">
+                            <li><a href="#main-content" class="text-dark-200 hover:text-primary-200 transition-colors text-xs md:text-sm">Articles</a></li>
+                            <li><a href="#about" class="text-dark-200 hover:text-primary-200 transition-colors text-xs md:text-sm">About</a></li>
+                            <li><a href="#contact" class="text-dark-200 hover:text-primary-200 transition-colors text-xs md:text-sm">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-base md:text-lg mb-4">Connect</h4>
+                    <nav aria-label="Social media links">
+                        <ul class="space-y-1 md:space-y-2">
+                            <li><a href="https://x.com/kuraku_clark" target="_blank" rel="noopener noreferrer" class="text-dark-200 hover:text-primary-200 transition-colors text-xs md:text-sm">Twitter</a></li>
+                            <li><a href="https://github.com/PipoyBabu" target="_blank" rel="noopener noreferrer" class="text-dark-200 hover:text-primary-200 transition-colors text-xs md:text-sm">GitHub</a></li>
+                            <li><a href="https://www.linkedin.com/in/clark-wayne-bagtas-a85b7a380/" target="_blank" rel="noopener noreferrer" class="text-dark-200 hover:text-primary-200 transition-colors text-xs md:text-sm">LinkedIn</a></li>
+                            <li><a href="mailto:bagtasclarkwayne.pipoy@gmail.com" class="text-dark-200 hover:text-primary-200 transition-colors text-xs md:text-sm">Email</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="border-t border-dark-500 pt-6 md:pt-8 mt-8 text-center md:text-left text-dark-300 text-xs md:text-sm">
+                <p class="mb-2">&copy; 2026 CodeJourney by Clark Wayne D. Bagtas. All rights reserved.</p>
+                <p class="text-dark-400">Built with HTML5, CSS3 (Tailwind), JavaScript, and a passion for learning.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="src/main.js"></script>
+    
+    <!-- Contact Form Handler -->
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Store visitor name for modal
+            document.getElementById('visitor-name').textContent = name;
+            
+            // Reset form
+            this.reset();
+            
+            // Show modal
+            const modal = document.getElementById('contact-modal');
+            modal.classList.remove('hidden');
+            
+            // Auto-close modal after 4 seconds
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 4000);
+            
+            console.log('Form submitted:', { name, email, subject, message });
+        });
+        
+        // Search Functionality
+        const searchInput = document.getElementById('search-posts');
+        const searchResults = document.getElementById('search-results');
+        const searchResultsList = document.getElementById('search-results-list');
+        
+        // Article data for search
+        const articles = [
+            {
+                title: 'My First Language: Learning C++',
+                description: 'Exploring the fundamentals of C++ programming and object-oriented concepts.',
+                category: 'C++',
+                link: '#cpp',
+                tags: ['C++', 'Fundamentals', 'OOP']
+            },
+            {
+                title: 'Transitioning to Java: Embracing Objects',
+                description: 'Moving from C++ to Java and understanding true object-oriented programming.',
+                category: 'Java',
+                link: '#java',
+                tags: ['Java', 'OOP', 'Design Patterns']
+            },
+            {
+                title: 'From Console to Browser: My Web Development Journey',
+                description: 'The paradigm shift from console applications to building interactive web experiences.',
+                category: 'Web Development',
+                link: '#webdev',
+                tags: ['Web Dev', 'HTML', 'CSS', 'JavaScript']
+            },
+            {
+                title: 'Depth Over Breadth: Mastering My Core Tech Stack',
+                description: 'Strategy over trends. Mastering HTML5, Tailwind, Node.js, and MongoDB for excellence.',
+                category: 'Architecture',
+                link: '#depth',
+                tags: ['Full-Stack', 'Architecture', 'Best Practices']
+            }
+        ];
+        
+        searchInput.addEventListener('input', function(e) {
+            const query = this.value.toLowerCase().trim();
+            
+            if (query.length === 0) {
+                searchResults.classList.add('hidden');
+                return;
+            }
+            
+            // Filter articles based on search query
+            const filtered = articles.filter(article => 
+                article.title.toLowerCase().includes(query) ||
+                article.description.toLowerCase().includes(query) ||
+                article.category.toLowerCase().includes(query) ||
+                article.tags.some(tag => tag.toLowerCase().includes(query))
+            );
+            
+            // Display results
+            if (filtered.length > 0) {
+                searchResultsList.innerHTML = filtered.map(article => `
+                    <li>
+                        <a href="${article.link}" class="block p-4 hover:bg-gray-50 transition-colors">
+                            <div class="flex justify-between items-start gap-2">
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-gray-900 hover:text-primary-200">${article.title}</h4>
+                                    <p class="text-sm text-gray-600 mt-1">${article.description}</p>
+                                    <div class="flex gap-2 mt-2 flex-wrap">
+                                        <span class="inline-block bg-primary-50 text-primary-200 text-xs font-semibold px-2 py-1 rounded">${article.category}</span>
+                                        ${article.tags.slice(0, 2).map(tag => `<span class="inline-block text-gray-500 text-xs">#${tag}</span>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                `).join('');
+                searchResults.classList.remove('hidden');
+            } else {
+                searchResultsList.innerHTML = `
+                    <li class="p-4 text-center text-gray-600">
+                        No articles found for "${query}"
+                    </li>
+                `;
+                searchResults.classList.remove('hidden');
+            }
+        });
+        
+        // Close search results when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('#search-posts') && !e.target.closest('#search-results')) {
+                searchResults.classList.add('hidden');
+            }
+        });
+        
+        // Allow closing results with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                searchResults.classList.add('hidden');
+                searchInput.value = '';
+            }
+        });
+    </script>
 </body>
 </html>
