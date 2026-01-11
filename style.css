@@ -11,12 +11,23 @@ html {
     scroll-behavior: smooth;
 }
 
+:root{
+    --primary: #50b3a2;
+    --primary-dark: #3d8776;
+    --muted: #666666;
+    --bg: #f5f7fa;
+    --text: #333333;
+    --card-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
     line-height: 1.6;
     font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 img {
@@ -26,13 +37,13 @@ img {
 }
 
 a {
-    color: #50b3a2;
+    color: var(--primary);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: #3d8776;
+    color: var(--primary-dark);
 }
 
 /* ========================================
@@ -82,10 +93,10 @@ p {
    TOP NAVIGATION
    ======================================== */
 .top-nav {
-    background-color: #2c3e50;
+    background-color: #1f2937;
     padding: 0.75rem 0;
     font-size: 0.875rem;
-    border-bottom: 1px solid #34495e;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 
 .top-nav__container {
@@ -116,11 +127,11 @@ p {
    HEADER
    ======================================== */
 .header {
-    background: linear-gradient(135deg, #50b3a2 0%, #4a9b89 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, #4a9b89 100%);
     color: white;
     padding: 2rem 0;
     text-align: center;
-    border-bottom: 4px solid #3d8776;
+    border-bottom: 4px solid var(--primary-dark);
 }
 
 .header__container {
@@ -158,7 +169,7 @@ p {
 
 .search-input:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
 }
 
 /* ========================================
@@ -187,12 +198,13 @@ p {
     width: 24px;
     height: 24px;
     padding: 0;
+    z-index: 1100;
 }
 
 .main-nav__toggle span {
     width: 100%;
     height: 3px;
-    background-color: #50b3a2;
+    background-color: var(--primary);
     border-radius: 2px;
     transition: all 0.3s ease;
 }
@@ -215,13 +227,14 @@ p {
     flex-direction: column;
     gap: 0;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 0.25rem);
     left: 0;
     right: 0;
     background: white;
     border-top: 1px solid #e0e0e0;
     max-height: 0;
     overflow: hidden;
+    z-index: 1050;
     transition: max-height 0.3s ease;
 }
 
@@ -243,8 +256,8 @@ p {
 }
 
 .main-nav__list a:hover {
-    background-color: #f5f5f5;
-    color: #50b3a2;
+    background-color: #f7fafb;
+    color: var(--primary);
 }
 
 /* ========================================
@@ -263,9 +276,9 @@ p {
     flex-direction: column;
     gap: 1.5rem;
     background: white;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--card-shadow);
     margin-bottom: 2rem;
 }
 
@@ -364,17 +377,17 @@ p {
 
 .article-card {
     background: white;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.28s cubic-bezier(.2,.9,.2,1), box-shadow 0.28s ease;
     display: flex;
     flex-direction: column;
 }
 
 .article-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-6px) scale(1.005);
+    box-shadow: 0 10px 30px rgba(15,23,42,0.08);
 }
 
 .article-card__image {
@@ -409,8 +422,8 @@ p {
 }
 
 .tag {
-    background-color: #e8f5f3;
-    color: #50b3a2;
+    background-color: #eaf6f3;
+    color: var(--primary-dark);
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -538,26 +551,25 @@ p {
    BUTTONS
    ======================================== */
 .btn {
-    padding: 0.75rem 1.5rem;
+    padding: 0.6rem 1.1rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     display: inline-block;
-    width: 100%;
+    width: auto;
     text-align: center;
 }
 
 .btn--primary {
-    background-color: white;
-    color: #50b3a2;
+    background-color: var(--primary);
+    color: white;
 }
 
 .btn--primary:hover {
-    background-color: #f0f0f0;
-    color: #3d8776;
+    background-color: var(--primary-dark);
 }
 
 /* ========================================

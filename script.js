@@ -1,33 +1,60 @@
-// Mobile Menu Toggle
+// Mobile Menu Toggle (improved)
 const menuToggle = document.getElementById('menu-toggle');
 const menu = document.getElementById('menu');
 
+function closeMenu() {
+    if (!menu || !menuToggle) return;
+    menuToggle.classList.remove('active');
+    menu.classList.remove('active');
+    // if project uses Tailwind's hidden utility, keep it in sync
+    menu.classList.add('hidden');
+    menuToggle.setAttribute('aria-expanded', 'false');
+}
+
+function openMenu() {
+    if (!menu || !menuToggle) return;
+    menuToggle.classList.add('active');
+    menu.classList.add('active');
+    menu.classList.remove('hidden');
+    menuToggle.setAttribute('aria-expanded', 'true');
+}
+
 if (menuToggle && menu) {
-    menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('active');
-        menu.classList.toggle('active');
-        menuToggle.setAttribute('aria-expanded', 
-            menuToggle.getAttribute('aria-expanded') === 'false' ? 'true' : 'false'
-        );
+    // initialize aria
+    if (!menuToggle.hasAttribute('aria-expanded')) menuToggle.setAttribute('aria-expanded', 'false');
+
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+        if (isOpen) closeMenu(); else openMenu();
     });
 
-    // Close menu when clicking on a link
+    // prevent clicks inside menu from closing it
+    menu.addEventListener('click', (e) => e.stopPropagation());
+
+    // Close menu when clicking on a link (and allow navigation)
     menu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-            menuToggle.classList.remove('active');
-            menu.classList.remove('active');
-            menuToggle.setAttribute('aria-expanded', 'false');
+            closeMenu();
         });
     });
 
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.main-nav')) {
-            menuToggle.classList.remove('active');
-            menu.classList.remove('active');
-            menuToggle.setAttribute('aria-expanded', 'false');
-        }
+    // Close menu when clicking outside (only if menu is open)
+    document.addEventListener('click', () => {
+        const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+        if (isOpen) closeMenu();
     });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+    });
+
+    // Support touch events for some mobile devices
+    document.addEventListener('touchstart', (e) => {
+        const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+        if (isOpen && !e.target.closest('.main-nav')) closeMenu();
+    }, { passive: true });
 }
 
 // Search functionality (optional enhancement)
