@@ -260,6 +260,34 @@ p {
     color: var(--primary);
 }
 
+/* Nav Link and Icon Hover/Active Styles */
+.nav-link {
+    color: #333 !important;
+}
+
+.nav-link:hover {
+    color: var(--primary) !important;
+    border-bottom-color: var(--primary) !important;
+    background-color: rgba(80, 179, 162, 0.08) !important;
+}
+
+.nav-link.active-nav {
+    color: var(--primary) !important;
+    border-bottom-color: var(--primary) !important;
+}
+
+.nav-icon {
+    color: #333 !important;
+}
+
+.nav-icon:hover {
+    color: var(--primary) !important;
+}
+
+.nav-icon.active-nav {
+    color: var(--primary) !important;
+}
+
 /* ========================================
    MAIN CONTENT
    ======================================== */

@@ -82,3 +82,43 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Active nav indicator on scroll
+function updateActiveNav() {
+    const navLinks = document.querySelectorAll('.nav-link, .nav-icon');
+    const sections = document.querySelectorAll('#home, #cpp, #java, #webdev, #resources');
+    
+    let currentSection = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100; // Offset for sticky nav
+        const sectionHeight = section.offsetHeight;
+        
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+            currentSection = section.id;
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active-nav');
+        const href = link.getAttribute('href').substring(1);
+        
+        if (href === currentSection) {
+            link.classList.add('active-nav');
+            if (link.classList.contains('nav-link')) {
+                link.classList.add('!text-primary-200', '!border-b-primary-200');
+            } else if (link.classList.contains('nav-icon')) {
+                link.classList.add('!text-primary-200');
+            }
+        } else {
+            if (link.classList.contains('nav-link')) {
+                link.classList.remove('!text-primary-200', '!border-b-primary-200');
+            } else if (link.classList.contains('nav-icon')) {
+                link.classList.remove('!text-primary-200');
+            }
+        }
+    });
+}
+
+window.addEventListener('scroll', updateActiveNav);
+document.addEventListener('DOMContentLoaded', updateActiveNav);
